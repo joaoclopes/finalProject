@@ -1,0 +1,12 @@
+{
+    "name": "joao_/final-project",
+    "require": {
+        "phpunit/phpunit": "^9.2"
+    },
+    "authors": [
+        {
+            "name": "joaoclopes",
+            "email": "joaoclopes14@gmail.com"
+        }
+    ]
+}
