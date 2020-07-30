@@ -1,6 +1,6 @@
 <?php 
 
-namespace FinalProject\src\Service;
+namespace FinalProject\Src\Service;
 
 class TableService
 {

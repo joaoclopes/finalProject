@@ -1,6 +1,6 @@
 <?php 
 
-namespace FinalProject\application\Controller;
+namespace FinalProject\Application\Controller;
 
 class TeamController
 {

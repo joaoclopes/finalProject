@@ -3,6 +3,11 @@
     "require": {
         "phpunit/phpunit": "^9.2"
     },
+    "autoload": {
+        "psr-4": {
+            "FinalProject\\" : "src/"
+        }
+    },
     "authors": [
         {
             "name": "joaoclopes",

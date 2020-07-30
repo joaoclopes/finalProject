@@ -1,6 +1,6 @@
 <?php
 
-namespace FinalProject\Models;
+namespace FinalProject\Src\Models;
 
 class Team
 {
