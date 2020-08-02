@@ -5,7 +5,8 @@
     },
     "autoload": {
         "psr-4": {
-            "FinalProject\\" : "src/"
+            "FinalProjectSrc\\" : "src/",
+            "FinalProjectApplication\\" : "application/"
         }
     },
     "authors": [

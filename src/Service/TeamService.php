@@ -1,8 +1,27 @@
 <?php 
 
-namespace FinalProject\Src\Service;
+namespace FinalProjectSrc\Src\Service;
 
 class TeamService
 {
-    
+    public function validateTeamName($teamName) 
+    {
+        if(!$teamName) {
+            return false;
+        }
+    }
+
+    public function validatePlayerOne($playerOne) 
+    {
+        if(!$playerOne) {
+            return false;
+        }
+    }
+
+    public function validatePlayerTwo($playerTwo) 
+    {
+        if(!$playerTwo) {
+            return false;
+        }
+    }
 }
