@@ -1,6 +1,6 @@
 {
     "name": "joao_/final-project",
-    "require": {
+    "require-dev": {
         "phpunit/phpunit": "^9.2"
     },
     "autoload": {
@@ -14,5 +14,8 @@
             "name": "joaoclopes",
             "email": "joaoclopes14@gmail.com"
         }
-    ]
+    ],
+    "require": {
+        "bramus/router": "~1.4"
+    }
 }

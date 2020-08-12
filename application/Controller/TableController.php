@@ -1,10 +1,14 @@
 <?php 
 
-namespace FinalProjectApplication\Application\Controller;
+namespace FinalProjectApplication\Controller;
+
+use FinalProjectSrc\Service\TableService;
+use FinalProjectSrc\Models\Table;
+use FinalProjectSrc\Repository\TableRepository;
 
 class TableController
 {
-    public function createTable() 
+    public function createTable($tableName, $tablePrize, $tablePointsToWin, $tableDescription) 
     {
         $newTable = new Table();
         $newTable->setTableName($tableName);
@@ -29,9 +33,16 @@ class TableController
         if (!$tableService->validateTableDescription($newTable->getTableDescription())) {
             return false;
         }
+
+        $tableRepository = new TableRepository();
+        $tableRepository->tableRegister(
+            $newTable->getTableName(), 
+            $newTable->getTablePrize(), 
+            $newTable->getTablePointsToWin(), 
+            $newTable->getTableDescription());
     }
 
-    public function insertTeamInTable()
+    public function insertTeamInTable($teamName, $tableName)
     {
         $tableService = new TableService();
 
@@ -39,6 +50,8 @@ class TableController
             return false;
         }
 
-        $tableService->tableInsertTeam($teamName);
+        $tableRepository = new TableRepository();
+        
+        $tableRepository->tableInsertTeam($teamName);
     }
 }

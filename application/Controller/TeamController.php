@@ -1,10 +1,13 @@
 <?php 
 
-namespace FinalProjectApplication\Application\Controller;
+namespace FinalProjectApplication\Controller;
+
+use FinalProjectSrc\Models\Team;
+use FinalProjectSrc\Service\TeamService;
 
 class TeamController
 {
-    public function createTeam() 
+    public function createTeam($teamName, $playerOne, $playerTwo) 
     {
         $newTeam = new Team();
         $newTeam->setTeamName($teamName);
@@ -25,6 +28,6 @@ class TeamController
             return false;
         }
 
-
+        return true;
     }
 }

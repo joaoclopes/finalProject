@@ -1,6 +1,6 @@
 <?php
 
-namespace FinalProject\Src\Repository;
+namespace FinalProjectSrc\Repository;
 
 class TeamRepository
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace FinalProjectSrc\Src\Models;
+namespace FinalProjectSrc\Models;
 
 class Table
 {

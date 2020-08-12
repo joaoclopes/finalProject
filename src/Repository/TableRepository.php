@@ -1,6 +1,8 @@
 <?php
 
-namespace FinalProject\Src\Repository;
+namespace FinalProjectSrc\Repository;
+
+use FinalProjectSrc\Repository\DatabaseConnection;
 
 class TableRepository
 {
@@ -19,17 +21,17 @@ class TableRepository
     public function tableInsertTeam()
     {
         $connection = DatabaseConnection::getConnection();
-        $sql = $connection->prepare("UPDATE tables SET teams = (tamName) WHERE tableName = (tableName) VALUES (:tn, :tan)");
-        $sql->bindValue(":tn",$teamName);
-        $sql->bindValue(":tan",$tableName);
+        $sql = $connection->prepare("UPDATE tableTeams SET (tableName, teamName) VALUES (:tan, :ten)");
+        $sql->bindValue(":tan",$teamName);
+        $sql->bindValue(":ten",$tableName);
         $sql->execute();
         return true;
     }
 
-    public function tableVerifyTeamsInTable() 
+    public function tableShowTeamsInTable() 
     {
         $connection = DatabaseConnection::getConnection();
-        $sql = $connection->prepare("SELECT teams FROM tables WHERE tableName = (tableName) VALUES (:tn)");
+        $sql = $connection->prepare("SELECT teamName FROM tableTeams WHERE tableName = (tableName) VALUES (:tn)");
         $sql->bindValue(":tn",$tableName);
         $sql->execute();
         return true;
