@@ -6,7 +6,7 @@ use FinalProjectSrc\Repository\DatabaseConnection;
 
 class TableRepository
 {
-    public function tableRegister() 
+    public function tableRegister($tableName, $tablePrize, $tablePointsToWin, $tableDescription) 
     {
         $connection = DatabaseConnection::getConnection();
         $sql = $connection->prepare("INSERT INTO tables (tableName, tablePrize, tablePointsToWin, tableDescription) VALUES (:tn, :tp, :tpw, :td)");
@@ -18,7 +18,7 @@ class TableRepository
         return true;
     }
 
-    public function tableInsertTeam()
+    public function tableInsertTeam($teamName, $tableName)
     {
         $connection = DatabaseConnection::getConnection();
         $sql = $connection->prepare("UPDATE tableTeams SET (tableName, teamName) VALUES (:tan, :ten)");
@@ -28,7 +28,7 @@ class TableRepository
         return true;
     }
 
-    public function tableShowTeamsInTable() 
+    public function tableShowTeamsInTable($tableName) 
     {
         $connection = DatabaseConnection::getConnection();
         $sql = $connection->prepare("SELECT teamName FROM tableTeams WHERE tableName = (tableName) VALUES (:tn)");

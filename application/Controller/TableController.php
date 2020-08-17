@@ -4,7 +4,6 @@ namespace FinalProjectApplication\Controller;
 
 use FinalProjectSrc\Service\TableService;
 use FinalProjectSrc\Models\Table;
-use FinalProjectSrc\Repository\TableRepository;
 
 class TableController
 {
@@ -34,8 +33,7 @@ class TableController
             return false;
         }
 
-        $tableRepository = new TableRepository();
-        $tableRepository->tableRegister(
+        $tableService->createTable(
             $newTable->getTableName(), 
             $newTable->getTablePrize(), 
             $newTable->getTablePointsToWin(), 
@@ -50,8 +48,6 @@ class TableController
             return false;
         }
 
-        $tableRepository = new TableRepository();
-        
-        $tableRepository->tableInsertTeam($teamName);
+        $tableService->insertTeamAndTableInRepository($teamName, $tableName);
     }
 }

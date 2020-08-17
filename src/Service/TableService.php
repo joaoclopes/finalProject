@@ -1,6 +1,7 @@
 <?php 
 
 namespace FinalProjectSrc\Service;
+use FinalProjectSrc\Repository\TableRepository;
 
 class TableService
 {
@@ -39,8 +40,23 @@ class TableService
         }
     }
 
-    public function verifyTeamsInTable()
+    public function createTable($tableName, $tablePrize, $tablePointsToWin, $tableDescription) 
     {
-        //CONSULTAR OS TIMES INSERIDOS NA REPOSITORY
+        $tableRepository = new TableRepository();
+        $tableRepository->tableRegister($tableName, $tablePrize, $tablePointsToWin, $tableDescription);
+    }
+
+    public function verifyTeamsInTable($tableName)
+    {
+        $tableRepository = new TableRepository();
+
+        $tableRepository->tableShowTeamsInTable($tableName);
+    }
+
+    public function insertTeamAndTableInRepository($teamName, $tableName)
+    {
+        $tableRepository = new TableRepository();
+        
+        $tableRepository->tableInsertTeam($teamName, $tableName);
     }
 }
