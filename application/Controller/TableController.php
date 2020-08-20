@@ -1,6 +1,7 @@
 <?php 
 
 namespace FinalProjectApplication\Controller;
+require('vendor/autoload.php');
 
 use FinalProjectSrc\Service\TableService;
 use FinalProjectSrc\Models\Table;
@@ -17,19 +18,19 @@ class TableController
 
         $tableService = new TableService();
 
-        if (!$tableService->validateTableName($newTable->getTableName())) {
+        if (!$tableService->verifyIfTableNameIsEmpty($newTable->getTableName())) {
             return false;
         }
 
-        if (!$tableService->validateTablePrize($newTable->getTablePrize())) {
+        if (!$tableService->verifyIfTablePrizeIsEmpty($newTable->getTablePrize())) {
             return false;
         }
 
-        if (!$tableService->validateTablePointsToWin($newTable->getTablePointsToWin())) {
+        if (!$tableService->verifyIfTablePointsToWinIsEmpty($newTable->getTablePointsToWin())) {
             return false;
         }
 
-        if (!$tableService->validateTableDescription($newTable->getTableDescription())) {
+        if (!$tableService->verifyIfTableDescriptionIsEmpty($newTable->getTableDescription())) {
             return false;
         }
 
@@ -44,10 +45,28 @@ class TableController
     {
         $tableService = new TableService();
 
-        if ($tableService->verifyTeamsInTable($teamName) > 10) {
+        if ($tableService->verifyTeamsInTable($teamName)) {
             return false;
         }
 
-        $tableService->insertTeamAndTableInRepository($teamName, $tableName);
+        $tableService->vinculateTeamAndTable($teamName, $tableName);
+    }
+
+    public function createTableForm()
+    {
+        $templates = new \League\Plates\Engine('src/templates');
+        echo $templates->render('tables/create-form');
+    }
+
+    public function createTableAndTeamForm()
+    {
+        $templates = new \League\Plates\Engine('src/templates');
+        echo $templates->render('tables/create-team-table-form');
+    }
+
+    public function showTablesAndTeams()
+    {
+        $templates = new \League\Plates\Engine('src/templates');
+        echo $templates->render('tables/show-tables');
     }
 }

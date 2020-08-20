@@ -16,6 +16,8 @@
         }
     ],
     "require": {
-        "bramus/router": "~1.4"
+        "bramus/router": "~1.4",
+        "twig/twig": "^3.0",
+        "league/plates": "^3.3"
     }
 }

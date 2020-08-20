@@ -21,7 +21,7 @@ class TableRepository
     public function tableInsertTeam($teamName, $tableName)
     {
         $connection = DatabaseConnection::getConnection();
-        $sql = $connection->prepare("UPDATE tableTeams SET (tableName, teamName) VALUES (:tan, :ten)");
+        $sql = $connection->prepare("INSERT tableTeams SET (tableName, teamName) VALUES (:tan, :ten)");
         $sql->bindValue(":tan",$teamName);
         $sql->bindValue(":ten",$tableName);
         $sql->execute();

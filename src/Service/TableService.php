@@ -5,39 +5,29 @@ use FinalProjectSrc\Repository\TableRepository;
 
 class TableService
 {
-    public function validateTableName($tableName) 
+    public function verifyIfTableNameIsEmpty($tableName) 
     {
-        if (!$tableName) {
-            return false;
-        }
+        var_dump($tableName);
     }
 
-    public function validateTablePrize($tablePrize) 
+    public function verifyIfTablePrizeIsEmpty($tablePrize) 
     {
-        if (!$tablePrize) {
-            return false;
-        }
+        var_dump($tablePrize);
     }
 
-    public function validateTablePointsToWin($tablePointsToWin) 
+    public function verifyIfTablePointsToWinIsEmpty($tablePointsToWin) 
     {
-        if (!$tablePointsToWin) {
-            return false;
-        }
+        var_dump($tablePointsToWin);
     }
 
-    public function validateTableDescription($tableDescription) 
+    public function verifyIfTableDescriptionIsEmpty($tableDescription) 
     {
-        if (!$tableDescription) {
-            return false;
-        }
+        var_dump($tableDescription);
     }
 
-    public function insertTeamInTable($teamName)
+    public function verifyIfTeamNameIsEmpty($teamName)
     {
-        if (!$teamName) {
-            return false;
-        }
+        var_dump($teamName);
     }
 
     public function createTable($tableName, $tablePrize, $tablePointsToWin, $tableDescription) 
@@ -50,10 +40,13 @@ class TableService
     {
         $tableRepository = new TableRepository();
 
-        $tableRepository->tableShowTeamsInTable($tableName);
+        if ($tableRepository->tableShowTeamsInTable($tableName) >= 10) {
+            return false;
+        }
+        return true;
     }
 
-    public function insertTeamAndTableInRepository($teamName, $tableName)
+    public function vinculateTeamAndTable($teamName, $tableName)
     {
         $tableRepository = new TableRepository();
         

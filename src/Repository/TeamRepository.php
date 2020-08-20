@@ -4,7 +4,7 @@ namespace FinalProjectSrc\Repository;
 
 class TeamRepository
 {
-    public function teamRegister() 
+    public function teamRegister($teamName, $playerOne, $playerTwo) 
     {
         $connection = DatabaseConnection::getConnection();
         $sql = $connection->prepare("INSERT INTO teams (teamName, playerOne, playerTwo) VALUES (:tn, :po, :pt)");

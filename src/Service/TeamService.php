@@ -2,6 +2,8 @@
 
 namespace FinalProjectSrc\Service;
 
+use FinalProjectSrc\Repository\TeamRepository;
+
 class TeamService
 {
     public function validateTeamName($teamName) 
@@ -23,5 +25,13 @@ class TeamService
         if(!$playerTwo) {
             return false;
         }
+    }
+
+    public function createTeam($teamName, $playerOne, $playerTwo)
+    {
+        $teamRepository = new TeamRepository();
+
+        $teamRepository->teamRegister($teamName, $playerOne, $playerTwo);
+
     }
 }
