@@ -43,7 +43,9 @@ $router->post('/table-register', function()
 
     $tableController = new TableController();
 
-    $tableController->createTable($tableName, $tablePrize, $tablePointsToWin, $tableDescription);
+    if(!$tableController->createTable($tableName, $tablePrize, $tablePointsToWin, $tableDescription)) {
+        echo 'preenche ae';
+    }
 });
 
 $router->get('/insert-team-in-table', function() 

@@ -16,7 +16,7 @@ Class DatabaseConnection
     {
         if(!self::$connection) {
             try {
-                self::$connection = new PDO("mysql: dbname=" .$nome. ";host" .$host,$usuario,$senha);
+                self::$connection = new PDO("mysql: dbname=" .$nome. "; host=" . $host . "; user=" . $usuario . "; password=" . $senha . ";);
             } catch (PDOException $e) {
                 $msgError = $e->getMessage();
             }

@@ -8,7 +8,7 @@ class TableRepository
 {
     public function tableRegister($tableName, $tablePrize, $tablePointsToWin, $tableDescription) 
     {
-        $connection = DatabaseConnection::getConnection();
+        $connection = DatabaseConnection::getConnection("database", "localhost", "root", "");
         $sql = $connection->prepare("INSERT INTO tables (tableName, tablePrize, tablePointsToWin, tableDescription) VALUES (:tn, :tp, :tpw, :td)");
         $sql->bindValue(":tn",$tableName);
         $sql->bindValue(":tp",$tablePrize);

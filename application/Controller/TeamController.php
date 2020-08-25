@@ -27,12 +27,15 @@ class TeamController
         if (!$teamService->validatePlayerTwo($newTeam->getPlayerTwo())) {
             return false;
         }
+        
+        $teamService->createTeam($newTeam->getTeamName(), $newTeam->getPlayerOne(), $newTeam->getPlayerTwo());
+
         return true;
     }
 
     public function createTeamForm()
     {
-        $templates = new \League\Plates\Engine('src/templates');
+        $templates = new \League\Plates\Engine('application/templates');
         echo $templates->render('teams/create-form');
     }
 }

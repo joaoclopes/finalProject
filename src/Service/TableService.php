@@ -7,33 +7,55 @@ class TableService
 {
     public function verifyIfTableNameIsEmpty($tableName) 
     {
-        var_dump($tableName);
+        if(!$tableName) {
+            return false;
+        }
+
+        return true;
     }
 
     public function verifyIfTablePrizeIsEmpty($tablePrize) 
     {
-        var_dump($tablePrize);
+        if(!$tablePrize) {
+            return false;
+        }
+
+        return true;
     }
 
     public function verifyIfTablePointsToWinIsEmpty($tablePointsToWin) 
     {
-        var_dump($tablePointsToWin);
+        if(!$tablePointsToWin) {
+            return false;
+        }
+
+        return true;
     }
 
     public function verifyIfTableDescriptionIsEmpty($tableDescription) 
     {
-        var_dump($tableDescription);
+        if(!$tableDescription) {
+            return false;
+        }
+
+        return true;
     }
 
     public function verifyIfTeamNameIsEmpty($teamName)
     {
-        var_dump($teamName);
+        if(!$teamName) {
+            return false;
+        }
+
+        return true;
     }
 
     public function createTable($tableName, $tablePrize, $tablePointsToWin, $tableDescription) 
     {
         $tableRepository = new TableRepository();
         $tableRepository->tableRegister($tableName, $tablePrize, $tablePointsToWin, $tableDescription);
+
+        return true;
     }
 
     public function verifyTeamsInTable($tableName)
@@ -51,5 +73,7 @@ class TableService
         $tableRepository = new TableRepository();
         
         $tableRepository->tableInsertTeam($teamName, $tableName);
+
+        return true;
     }
 }

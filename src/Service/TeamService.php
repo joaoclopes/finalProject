@@ -11,6 +11,8 @@ class TeamService
         if(!$teamName) {
             return false;
         }
+
+        return true;
     }
 
     public function validatePlayerOne($playerOne) 
@@ -18,6 +20,8 @@ class TeamService
         if(!$playerOne) {
             return false;
         }
+
+        return true;
     }
 
     public function validatePlayerTwo($playerTwo) 
@@ -25,6 +29,8 @@ class TeamService
         if(!$playerTwo) {
             return false;
         }
+
+        return true;
     }
 
     public function createTeam($teamName, $playerOne, $playerTwo)

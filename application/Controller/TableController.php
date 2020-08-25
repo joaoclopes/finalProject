@@ -39,6 +39,8 @@ class TableController
             $newTable->getTablePrize(), 
             $newTable->getTablePointsToWin(), 
             $newTable->getTableDescription());
+
+        return true;
     }
 
     public function insertTeamInTable($teamName, $tableName)
@@ -50,23 +52,25 @@ class TableController
         }
 
         $tableService->vinculateTeamAndTable($teamName, $tableName);
+
+        return true;
     }
 
     public function createTableForm()
     {
-        $templates = new \League\Plates\Engine('src/templates');
+        $templates = new \League\Plates\Engine('application/templates');
         echo $templates->render('tables/create-form');
     }
 
     public function createTableAndTeamForm()
     {
-        $templates = new \League\Plates\Engine('src/templates');
+        $templates = new \League\Plates\Engine('application/templates');
         echo $templates->render('tables/create-team-table-form');
     }
 
     public function showTablesAndTeams()
     {
-        $templates = new \League\Plates\Engine('src/templates');
+        $templates = new \League\Plates\Engine('application/templates');
         echo $templates->render('tables/show-tables');
     }
 }
