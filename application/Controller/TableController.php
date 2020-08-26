@@ -43,34 +43,34 @@ class TableController
         return true;
     }
 
-    public function insertTeamInTable($teamName, $tableName)
+    public function vinculateTeamInTable($teamID, $tableID)
     {
         $tableService = new TableService();
 
-        if ($tableService->verifyTeamsInTable($teamName)) {
+        /**if ($tableService->verifyTeamsInTable($teamID)) {
             return false;
-        }
+        }*/
 
-        $tableService->vinculateTeamAndTable($teamName, $tableName);
+        $tableService->vinculateTeamAndTable($teamID, $tableID);
 
         return true;
     }
 
     public function createTableForm()
     {
-        $templates = new \League\Plates\Engine('application/templates');
-        echo $templates->render('tables/create-form');
+        $templates = new \League\Plates\Engine('application/Templates');
+        echo $templates->render('Tables/create-form');
     }
 
     public function createTableAndTeamForm()
     {
-        $templates = new \League\Plates\Engine('application/templates');
-        echo $templates->render('tables/create-team-table-form');
+        $templates = new \League\Plates\Engine('application/Templates');
+        echo $templates->render('Tables/create-team-table-form');
     }
 
     public function showTablesAndTeams()
     {
-        $templates = new \League\Plates\Engine('application/templates');
-        echo $templates->render('tables/show-tables');
+        $templates = new \League\Plates\Engine('application/Templates');
+        echo $templates->render('Tables/show-tables');
     }
 }

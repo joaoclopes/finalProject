@@ -4,6 +4,7 @@ require('vendor/autoload.php');
 
 use FinalProjectSrc\Models\Team;
 use FinalProjectSrc\Service\TeamService;
+use FinalProjectSrc\Service\TableService;
 
 class TeamController
 {
@@ -35,7 +36,20 @@ class TeamController
 
     public function createTeamForm()
     {
-        $templates = new \League\Plates\Engine('application/templates');
-        echo $templates->render('teams/create-form');
+        $templates = new \League\Plates\Engine('application/Templates');
+        echo $templates->render('Teams/create-form');
+    }
+
+    public function getAllTeams() {
+        $templates = new \League\Plates\Engine('application/Templates');
+
+        // usar service/repository para buscar dados
+        $teamService = new TeamService();
+        $teams = $teamService->getTeams();
+
+        $tableService = new TableService();
+        $tables = $tableService->getTables();
+
+        echo $templates->render('Teams/team-data', ['teams' => $teams, 'tables' => $tables]);
     }
 }

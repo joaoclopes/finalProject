@@ -48,21 +48,24 @@ $router->post('/table-register', function()
     }
 });
 
-$router->get('/insert-team-in-table', function() 
+$router->get('/team', function() 
 {
-    $tableController = new TableController();
+    $teamController = new TeamController();
 
-    $tableController->createTableAndTeamForm();
+    $teamController->getAllTeams();
 });
 
-$router->post('/insert-team-in-table', function()
+$router->post('/vinculate-team-table', function()
 {
-    $teamName = $_POST['teamName'];
-    $tableName = $_POST['tableName'];
+    $teamID = $_POST['teams'];
+    $tableID = $_POST['tables'];
+
+    var_dump($teamID);
+    var_dump($tableID);
 
     $tableController = new TableController();
 
-    $tableController->insertTeamInTable($teamName, $tableName);
+    $tableController->vinculateTeamInTable($teamID, $tableID);
 });
 
 $router->get('/show-tables', function() 

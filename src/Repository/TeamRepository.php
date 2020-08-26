@@ -6,12 +6,23 @@ class TeamRepository
 {
     public function teamRegister($teamName, $playerOne, $playerTwo) 
     {
-        $connection = DatabaseConnection::getConnection();
-        $sql = $connection->prepare("INSERT INTO teams (teamName, playerOne, playerTwo) VALUES (:tn, :po, :pt)");
-        $sql->bindValue(":tn",$teamName);
-        $sql->bindValue(":po",$playerOne);
-        $sql->bindValue(":pt",$playerTwo);
-        $sql->execute();
+        $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
+        $sql = $connection->prepare("INSERT INTO teams (name, playerone, playertwo) VALUES (?, ?, ?)");
+        $sql->bindValue(1, $teamName);
+        $sql->bindValue(2, $playerOne);
+        $sql->bindValue(3, $playerTwo);
+        $result = $sql->execute();
+        var_dump($sql->errorInfo());
+        var_dump($result);
         return true;
+    }
+
+    public function getTeams()
+    {
+        $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
+        $sql = $connection->prepare("SELECT * FROM teams");
+        $result = $sql->execute();
+        $dataReturn = $sql->fetchAll(\PDO::FETCH_OBJ);
+        return $dataReturn;
     }
 }

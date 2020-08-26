@@ -68,12 +68,21 @@ class TableService
         return true;
     }
 
-    public function vinculateTeamAndTable($teamName, $tableName)
+    public function vinculateTeamAndTable($teamID, $tableID)
     {
         $tableRepository = new TableRepository();
         
-        $tableRepository->tableInsertTeam($teamName, $tableName);
+        $tableRepository->vinculateTeamInTable($teamID, $tableID);
 
         return true;
+    }
+
+    public function getTables ()
+    {
+        $tableRepository = new TableRepository();
+
+        $tablesReturn = $tableRepository->getTables();
+
+        return $tablesReturn;
     }
 }

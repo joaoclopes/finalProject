@@ -2,7 +2,9 @@
 
 namespace FinalProjectSrc\Repository;
 
-Class DatabaseConnection 
+use PDO;
+
+Class DatabaseRepository
 {
     
     private function __construct() 
@@ -16,7 +18,7 @@ Class DatabaseConnection
     {
         if(!self::$connection) {
             try {
-                self::$connection = new PDO("mysql: dbname=" .$nome. "; host=" . $host . "; user=" . $usuario . "; password=" . $senha . ";);
+                self::$connection = new PDO("mysql:dbname=" .$nome. ";host=" . $host, $usuario, $senha);
             } catch (PDOException $e) {
                 $msgError = $e->getMessage();
             }

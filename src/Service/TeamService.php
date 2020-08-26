@@ -40,4 +40,13 @@ class TeamService
         $teamRepository->teamRegister($teamName, $playerOne, $playerTwo);
 
     }
+
+    public function getTeams()
+    {
+        $teamRepository = new TeamRepository();
+
+        $teamsReturn = $teamRepository->getTeams();
+
+        return $teamsReturn;
+    }
 }
