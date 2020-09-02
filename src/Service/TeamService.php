@@ -49,4 +49,13 @@ class TeamService
 
         return $teamsReturn;
     }
+
+    public function getTeamsAndTable()
+    {
+        $teamRepository = new TeamRepository();
+
+        $dataReturn = $teamRepository->getTeamsAndTable();
+
+        return $dataReturn;
+    }
 }

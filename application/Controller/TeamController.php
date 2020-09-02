@@ -52,4 +52,13 @@ class TeamController
 
         echo $templates->render('Teams/team-data', ['teams' => $teams, 'tables' => $tables]);
     }
+
+    public function showAllTeamsAndTable() {
+        $templates = new \League\Plates\Engine('application/Templates');
+
+        $tableService = new TableService();
+        $teams = $tableService->getTables();
+
+        echo $templates->render('Teams/view-teams', ['teams' => $teams]);
+    }
 }

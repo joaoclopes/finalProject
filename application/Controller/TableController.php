@@ -4,6 +4,7 @@ namespace FinalProjectApplication\Controller;
 require('vendor/autoload.php');
 
 use FinalProjectSrc\Service\TableService;
+use FinalProjectSrc\Service\TeamService;
 use FinalProjectSrc\Models\Table;
 
 class TableController
@@ -43,17 +44,23 @@ class TableController
         return true;
     }
 
-    public function vinculateTeamInTable($teamID, $tableID)
+    public function vinculateTeamInTable($tableID, $teamID)
     {
         $tableService = new TableService();
 
-        /**if ($tableService->verifyTeamsInTable($teamID)) {
+        $verifyTeams = $tableService->verifyTeamsInTable($tableID, $teamID);
+        if (!$verifyTeams) {
             return false;
-        }*/
-
-        $tableService->vinculateTeamAndTable($teamID, $tableID);
-
+        }
+        $testDump = $tableService->vinculateTeamAndTable($tableID, $teamID);
         return true;
+    }
+
+    public function insertPointsInTable($tableID, $teamID, $pointsToAdd)
+    {
+        $tableService = new TableService();
+
+        $tableService->addPointsInTable($tableID, $teamID, $pointsToAdd);
     }
 
     public function createTableForm()
@@ -72,5 +79,27 @@ class TableController
     {
         $templates = new \League\Plates\Engine('application/Templates');
         echo $templates->render('Tables/show-tables');
+    }
+
+    public function addPointsInTable() {
+        $templates = new \League\Plates\Engine('application/Templates');
+
+        // usar service/repository para buscar dados
+        $teamService = new TeamService();
+        $teams = $teamService->getTeams();
+
+        $tableService = new TableService();
+        $tables = $tableService->getTables();
+
+        echo $templates->render('Teams/insert-points', ['teams' => $teams, 'tables' => $tables]);
+    }
+
+    public function getTableAndTeams($tableID) {
+        $templates = new \League\Plates\Engine('application/Templates');
+
+        $tableService = new TableService();
+        $tableAndTeams = $tableService->getTableAndTeams($tableID);
+
+        echo $templates->render('Tables/team-table', ['tableAndTeams' => $tableAndTeams]);
     }
 }

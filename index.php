@@ -60,12 +60,27 @@ $router->post('/vinculate-team-table', function()
     $teamID = $_POST['teams'];
     $tableID = $_POST['tables'];
 
-    var_dump($teamID);
-    var_dump($tableID);
+    $tableController = new TableController();
+
+    $tableController->vinculateTeamInTable($tableID, $teamID);
+});
+
+$router->get('/add-points', function() 
+{
+    $tableController = new TableController();
+
+    $tableController->addPointsInTable();
+});
+
+$router->post('/add-points', function()
+{
+    $teamID = $_POST['teams'];
+    $tableID = $_POST['tables'];
+    $pointsToAdd = $_POST['points'];
 
     $tableController = new TableController();
 
-    $tableController->vinculateTeamInTable($teamID, $tableID);
+    $tableController->insertPointsInTable($tableID, $teamID, $pointsToAdd);
 });
 
 $router->get('/show-tables', function() 
@@ -83,6 +98,21 @@ $router->post('/show-tables', function()
     $tableController = new TableController();
 
     $tableController->insertTeamInTable($teamName, $tableName);
+});
+
+$router->get('/team-view', function() 
+{
+    $teamController = new TeamController();
+
+    $teamController->showAllTeamsAndTable();
+});
+
+$router->get('/tables/{tableID}', function($tableID) 
+{
+    $tableController = new TableController();
+    
+    $tableController->getTableAndTeams($tableID);
+
 });
 
 $router->run();

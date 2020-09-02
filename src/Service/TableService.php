@@ -58,21 +58,28 @@ class TableService
         return true;
     }
 
-    public function verifyTeamsInTable($tableName)
-    {
-        $tableRepository = new TableRepository();
-
-        if ($tableRepository->tableShowTeamsInTable($tableName) >= 10) {
-            return false;
-        }
-        return true;
-    }
-
-    public function vinculateTeamAndTable($teamID, $tableID)
+    public function verifyTeamsInTable($tableID, $teamID)
     {
         $tableRepository = new TableRepository();
         
-        $tableRepository->vinculateTeamInTable($teamID, $tableID);
+        if ($tableRepository->hasLinkBetweenTeamAndTable($tableID, $teamID)) {
+            echo "times eguais";
+            return false;
+        }
+        
+        if ($tableRepository->countTeamsInTable($tableID) > 10) {
+            echo "Tabela cheia de times";
+            return false;
+        }
+
+        return true;
+    }
+
+    public function vinculateTeamAndTable($tableID, $teamID)
+    {
+        $tableRepository = new TableRepository();
+        
+        $tableRepository->vinculateTeamInTable($tableID, $teamID);
 
         return true;
     }
@@ -84,5 +91,26 @@ class TableService
         $tablesReturn = $tableRepository->getTables();
 
         return $tablesReturn;
+    }
+
+    public function addPointsInTable($tableID, $teamID, $pointsToAdd)
+    {
+        $tableRepository = new TableRepository();
+        
+        if(!$tableRepository->addPointsInTable($tableID, $teamID, $pointsToAdd)) {
+            echo "Este time não está inserido na tabela selecionada";
+            return false;
+        }
+
+        return true;
+    }
+
+    public function getTableAndTeams($tableID)
+    {
+        $tableRepository = new TableRepository();
+        
+        $dataTableReturn = $tableRepository->getTableAndRespectiveTeams($tableID);
+
+        return $dataTableReturn;
     }
 }
