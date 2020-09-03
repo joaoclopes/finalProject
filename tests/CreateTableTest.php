@@ -16,7 +16,7 @@ class CreateTableTest extends PHPUnit\Framework\TestCase
 
         $this->assertTrue($tableController->createTable($tableParameterName, $tableParameterPrize, $tableParameterPoints, $tableParameterDescription));
     }
-
+    
     public function parameterProvider()
     {
         return [

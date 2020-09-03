@@ -10,11 +10,11 @@ class InsertTeamInTableTest extends PHPUnit\Framework\TestCase
     /**
      * @dataProvider parameterProvider
      */
-    public function testInsertTeamInTable ($teamParameterName, $tableParameterName)
+    public function testInsertTeamInTable ($tableParameterName, $teamParameterName)
     {
         $tableController = new TableController();
 
-        $this->assertTrue($tableController->insertTeamInTable($teamParameterName, $tableParameterName));
+        $this->assertTrue($tableController->vinculateTeamInTable($tableParameterName, $teamParameterName));
     }
 
     public function parameterProvider()

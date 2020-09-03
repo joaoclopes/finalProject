@@ -60,7 +60,7 @@ class TableRepository
     public function addPointsInTable($tableID, $teamID, $pointsToAdd)
     {
         $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
-        $sql = $connection->prepare("UPDATE table_teams SET points = (?) WHERE table_id = (?) AND team_id = (?)");
+        $sql = $connection->prepare("UPDATE table_teams SET points = points + (?) WHERE table_id = (?) AND team_id = (?)");
         $sql->bindValue(1, $pointsToAdd);
         $sql->bindValue(2, $tableID);
         $sql->bindValue(3, $teamID);
