@@ -10,26 +10,22 @@ class TeamController
 {
     public function createTeam($teamName, $playerOne, $playerTwo) 
     {
-        $newTeam = new Team();
-        $newTeam->setTeamName($teamName);
-        $newTeam->setPlayerOne($playerOne);
-        $newTeam->setPlayerTwo($playerTwo);
 
         $teamService = new TeamService();
 
-        if (!$teamService->validateTeamName($newTeam->getTeamName())) {
+        if (!$teamService->validateTeamName($teamName)) {
             return false;
         }
 
-        if (!$teamService->validatePlayerOne($newTeam->getPlayerOne())) {
+        if (!$teamService->validatePlayerOne($playerOne)) {
             return false;
         }
 
-        if (!$teamService->validatePlayerTwo($newTeam->getPlayerTwo())) {
+        if (!$teamService->validatePlayerTwo($playerTwo)) {
             return false;
         }
         
-        $teamService->createTeam($newTeam->getTeamName(), $newTeam->getPlayerOne(), $newTeam->getPlayerTwo());
+        $teamService->createTeam($teamName, $playerOne, $playerTwo);
 
         return true;
     }

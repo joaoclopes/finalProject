@@ -11,27 +11,22 @@ class TableController
 {
     public function createTable($tableName, $tablePrize, $tablePointsToWin, $tableDescription) 
     {
-        $newTable = new Table();
-        $newTable->setTableName($tableName);
-        $newTable->setTablePrize($tablePrize);
-        $newTable->setTablePointsToWin($tablePointsToWin);
-        $newTable->setTableDescription($tableDescription);
 
         $tableService = new TableService();
 
-        if (!$tableService->verifyIfTableNameIsEmpty($newTable->getTableName())) {
+        if (!$tableService->verifyIfTableNameIsEmpty($tableName)) {
             return false;
         }
 
-        if (!$tableService->verifyIfTablePrizeIsEmpty($newTable->getTablePrize())) {
+        if (!$tableService->verifyIfTablePrizeIsEmpty($tablePrize)) {
             return false;
         }
 
-        if (!$tableService->verifyIfTablePointsToWinIsEmpty($newTable->getTablePointsToWin())) {
+        if (!$tableService->verifyIfTablePointsToWinIsEmpty($tablePointsToWin)) {
             return false;
         }
 
-        if (!$tableService->verifyIfTableDescriptionIsEmpty($newTable->getTableDescription())) {
+        if (!$tableService->verifyIfTableDescriptionIsEmpty($tableDescription)) {
             return false;
         }
 
