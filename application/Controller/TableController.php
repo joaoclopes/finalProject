@@ -31,10 +31,10 @@ class TableController
         }
 
         $tableService->createTable(
-            $newTable->getTableName(), 
-            $newTable->getTablePrize(), 
-            $newTable->getTablePointsToWin(), 
-            $newTable->getTableDescription());
+            $tableName, 
+            $tablePrize, 
+            $tablePointsToWin, 
+            $tableDescription);
 
         return true;
     }
