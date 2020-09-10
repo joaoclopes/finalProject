@@ -4,11 +4,15 @@ namespace FinalProjectSrc\Repository;
 
 use FinalProjectSrc\Repository\DatabaseRepository;
 
+include_once __DIR__ . '/vendor/autoload.php';
+
 class TableRepository
 {
     public function tableRegister($tableName, $tablePrize, $tablePointsToWin, $tableDescription) 
     {
-        $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
+        $dotenv = new Dotenv\Dotenv(__DIR__);
+        $dotenv->load();
+        $connection = DatabaseRepository::getConnection($_ENV['DB_DATABASE'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
         $sql = $connection->prepare("INSERT INTO tables (name, prize, pointstowin, description) VALUES (?, ?, ?, ?)");
         $sql->bindValue(1, $tableName);
         $sql->bindValue(2, $tablePrize);
@@ -20,7 +24,9 @@ class TableRepository
 
     public function vinculateTeamInTable($tableID, $teamID)
     {
-        $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
+        $dotenv = new Dotenv\Dotenv(__DIR__);
+        $dotenv->load();
+        $connection = DatabaseRepository::getConnection($_ENV['DB_DATABASE'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
         $sql = $connection->prepare("INSERT INTO table_teams (team_id, table_id, points) VALUES (?, ?, ?)");
         $sql->bindValue(1, $teamID);
         $sql->bindValue(2, $tableID);
@@ -30,7 +36,9 @@ class TableRepository
 
     public function hasLinkBetweenTeamAndTable($tableID, $teamID) 
     {
-        $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
+        $dotenv = new Dotenv\Dotenv(__DIR__);
+        $dotenv->load();
+        $connection = DatabaseRepository::getConnection($_ENV['DB_DATABASE'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
         $sql = $connection->prepare("SELECT * FROM table_teams WHERE table_id = (?) AND team_id = (?)");
         $sql->bindValue(1, $tableID);
         $sql->bindValue(2, $teamID);
@@ -40,7 +48,9 @@ class TableRepository
 
     public function countTeamsInTable($tableID) 
     {
-        $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
+        $dotenv = new Dotenv\Dotenv(__DIR__);
+        $dotenv->load();
+        $connection = DatabaseRepository::getConnection($_ENV['DB_DATABASE'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
         $sql = $connection->prepare("SELECT * FROM table_teams WHERE table_id = ?");
         $sql->bindValue(1, $tableID);
         $result = $sql->execute();
@@ -50,7 +60,9 @@ class TableRepository
 
     public function getTables()
     {
-        $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
+        $dotenv = new Dotenv\Dotenv(__DIR__);
+        $dotenv->load();
+        $connection = DatabaseRepository::getConnection($_ENV['DB_DATABASE'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
         $sql = $connection->prepare("SELECT * FROM tables");
         $result = $sql->execute();
         $dataReturn = $sql->fetchAll(\PDO::FETCH_OBJ);
@@ -59,7 +71,9 @@ class TableRepository
 
     public function addPointsInTable($tableID, $teamID, $pointsToAdd)
     {
-        $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
+        $dotenv = new Dotenv\Dotenv(__DIR__);
+        $dotenv->load();
+        $connection = DatabaseRepository::getConnection($_ENV['DB_DATABASE'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
         $sql = $connection->prepare("UPDATE table_teams SET points = points + (?) WHERE table_id = (?) AND team_id = (?)");
         $sql->bindValue(1, $pointsToAdd);
         $sql->bindValue(2, $tableID);
@@ -70,7 +84,9 @@ class TableRepository
 
     public function getTableAndRespectiveTeams($tableID)
     {
-        $connection = DatabaseRepository::getConnection("teste", "localhost", "joao", "senha");
+        $dotenv = new Dotenv\Dotenv(__DIR__);
+        $dotenv->load();
+        $connection = DatabaseRepository::getConnection($_ENV['DB_DATABASE'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
         $sql = $connection->prepare("select te.name, tt.points, ta.description, ta.pointstowin from table_teams tt
         Inner Join teams te 
         ON tt.team_id = te.id 
